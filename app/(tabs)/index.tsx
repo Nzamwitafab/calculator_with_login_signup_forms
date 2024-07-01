@@ -1,22 +1,14 @@
-import React from "react";
-import { View, StyleSheet } from "react-native";
-import Calculator from "../../components/Calculator";
-import LoginScreen from "../../components/LoginScreen";
-import SignupScreen from "../../components/SignupScreen";
+import React from 'react';
+import { ThemeProvider } from '@/components/ThemeContext';
+import { DrawerProvider } from '../../components/DrawerContext';
+import AppNavigator from '@/components/AppNavigator';
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Calculator />
-    </View>
+  return ( 
+   <ThemeProvider> 
+    <DrawerProvider>
+      <AppNavigator />
+    </DrawerProvider>
+   </ThemeProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#2563eb",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
