@@ -1,34 +1,11 @@
+Name:Nzamwitakuze Fabrice
+ID: 24855
 React Native Navigation 
 This React Native project demonstrates the integration of Bottom Navigation and Drawer Navigation within a single application. It is specifically designed to navigate between various components including Login, Signup, and a Calculator. This project utilizes the react-navigation library to offer a seamless and intuitive navigation experience.
 
 Features
 Bottom Navigation: Facilitates quick access to the Login, Signup, and Calculator components via intuitive icons and labels.
 Drawer Navigation: Provides a slide-out menu with additional navigation options and settings, ensuring a clean and organized user interface.
-Installation
-To get this project up and running on your local machine, follow these steps:
-
-Clone the repository:
-bash
-Copy code
-git clone https://github.com/Nzamwitafab/calculator_with_login_signup_forms
-Navigate to the project directory:
-bash
-Copy code
-cd react-native-navigation-example
-Install the necessary packages:
-bash
-Copy code
-npm install
-Run the project on your preferred device (iOS or Android):
-bash
-Copy code
-npx react-native run-ios
-or
-bash
-Copy code
-npx react-native run-android
-Usage
-Explore the app by tapping on the icons in the bottom navigation bar to switch between the Login, Signup, and Calculator views. Open the drawer navigation by swiping right from the left edge of the screen or by tapping the menu icon in the top-left corner.
 
 Screenshots
 Below are screenshots from the running app, showcasing the Bottom Navigation and Drawer Navigation along with the Login, Signup, and Calculator components:
