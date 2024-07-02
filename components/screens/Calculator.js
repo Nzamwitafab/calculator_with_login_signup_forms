@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { View, StyleSheet } from "react-native";
+import { useTheme } from '@/components/ThemeContext';  // Adjust the import path as necessary
 import CalculatorButton from "./CalculatorButton";
 import CalculatorDisplay from "./CalculatorDisplay";
 
 const Calculator = () => {
   const [displayValue, setDisplayValue] = useState("");
+  const { theme } = useTheme();  // Use the theme from your context
 
   const handleButtonPress = (buttonTitle) => {
     // Handle button press
@@ -40,10 +42,23 @@ const Calculator = () => {
     return digitButtons;
   };
 
+  const dynamicStyles = StyleSheet.create({
+    calculator: {
+      flex: 1,
+      backgroundColor: theme === 'light' ? '#f3f4f6' : '#1e293b', // Dynamic background color
+    },
+    buttonsContainer: {
+      flexDirection: "row",
+      flexWrap: "wrap",
+      justifyContent: "space-around",
+      padding: 10,
+    },
+  });
+
   return (
-    <View style={styles.calculator}>
+    <View style={dynamicStyles.calculator}>
       <CalculatorDisplay displayValue={displayValue} />
-      <View style={styles.buttonsContainer}>
+      <View style={dynamicStyles.buttonsContainer}>
         {renderDigitButtons()}
         <CalculatorButton title="+" onPress={() => handleButtonPress("+")} />
         <CalculatorButton title="-" onPress={() => handleButtonPress("-")} />
@@ -51,30 +66,11 @@ const Calculator = () => {
         <CalculatorButton title="/" onPress={() => handleButtonPress("/")} />
         <CalculatorButton title="%" onPress={() => handleButtonPress("%")} />
         <CalculatorButton title="=" onPress={() => handleButtonPress("=")} />
-        <CalculatorButton
-          title="Clear"
-          onPress={() => handleButtonPress("Clear")}
-        />
-        <CalculatorButton
-          title="Delete"
-          onPress={() => handleButtonPress("Delete")}
-        />
+        <CalculatorButton title="Clear" onPress={() => handleButtonPress("Clear")} />
+        <CalculatorButton title="Delete" onPress={() => handleButtonPress("Delete")} />
       </View>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  calculator: {
-    flex: 1,
-    backgroundColor: "#1e293b",
-  },
-  buttonsContainer: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "space-around",
-    padding: 10,
-  },
-});
 
 export default Calculator;

@@ -19,7 +19,7 @@ const CustomDrawerContent: React.FC<DrawerContentComponentProps> = (props) => {
         icon={({ color, size }) => (
           <Icon name="person-add-outline" color={styles[theme].iconColor.color} size={size} />
         )}
-        onPress={() => props.navigation.navigate('Registration')}
+        onPress={() => props.navigation.navigate('SignupScreen')}
          labelStyle={styles[theme].drawerItemLabel}
       />
       <DrawerItem
@@ -27,7 +27,7 @@ const CustomDrawerContent: React.FC<DrawerContentComponentProps> = (props) => {
         icon={({ color, size }) => (
           <Icon name="log-in-outline" color={styles[theme].iconColor.color} size={size} />
         )}
-        onPress={() => props.navigation.navigate('Login')}
+        onPress={() => props.navigation.navigate('LoginScreen')}
          labelStyle={styles[theme].drawerItemLabel}
       />
       <DrawerItem

@@ -8,11 +8,22 @@ import { useTheme } from './ThemeContext';
 const Drawer = createDrawerNavigator<RootDrawerParamList>();
 
 export default function AppNavigator() {
+  const { theme } = useTheme(); // Use the theme from your context
 
-  const { theme } = useTheme();
+  const drawerStyle = {
+    backgroundColor: theme === 'light' ? '#fff' : '#1a1a1a', // Adjust drawer background color based on theme
+    width: 200,
+  };
+
   return (
-      <Drawer.Navigator drawerContent={(props) => <CustomDrawerContent {...props} />}>
-        <Drawer.Screen name="MainTabs" component={BottomNavigation} options={{ headerShown: false,drawerStyle:{width:200} }} />
-      </Drawer.Navigator>
-);
+    <Drawer.Navigator
+      drawerContent={(props) => <CustomDrawerContent {...props} />}
+      screenOptions={{
+        drawerStyle, // Apply dynamic drawer style
+        headerShown: false,
+      }}
+    >
+      <Drawer.Screen name="MainTabs" component={BottomNavigation} />
+    </Drawer.Navigator>
+  );
 }

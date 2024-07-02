@@ -44,7 +44,7 @@ export default function BottomNavigation() {
 
           return <Icon name={iconName} size={size} color={color} />;
         },
-        tabBarActiveTintColor: 'green',
+        tabBarActiveTintColor: 'tomato',
         tabBarInactiveTintColor: 'gray',
         headerShown: true,
         headerTitle: '',
