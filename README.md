@@ -1,5 +1,8 @@
 Name:Nzamwitakuze Fabrice
 ID: 24855
+
+
+
 React Native Navigation 
 This React Native project demonstrates the integration of Bottom Navigation and Drawer Navigation within a single application. It is specifically designed to navigate between various components including Login, Signup, and a Calculator. This project utilizes the react-navigation library to offer a seamless and intuitive navigation experience.
 
