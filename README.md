@@ -12,9 +12,9 @@ Drawer Navigation: Provides a slide-out menu with additional navigation options 
 
 Screenshots
 Below are screenshots from the running app, showcasing the Bottom Navigation and Drawer Navigation along with the Login, Signup, and Calculator components:
-![WhatsApp Image 2024-07-01 at 13 17 29_dcb7984c](https://github.com/Nzamwitafab/calculator_with_login_signup_forms/assets/113667527/1f2a129d-a878-499a-8be0-08df825be676)
-![WhatsApp Image 2024-07-01 at 13 17 28_2bd2802a](https://github.com/Nzamwitafab/calculator_with_login_signup_forms/assets/113667527/836e90ac-a118-4faf-bbf7-9b411734fe6b)
-![WhatsApp Image 2024-07-01 at 13 17 28_eb65b3f6](https://github.com/Nzamwitafab/calculator_with_login_signup_forms/assets/113667527/cff88741-cc69-4f45-b4a5-f1c188890785)
+![WhatsApp Image 2024-07-02 at 18 41 10_db02f61f](https://github.com/Nzamwitafab/calculator_with_login_signup_forms/assets/113667527/2253295a-be2b-4602-8631-f098011a3694)
+
+![WhatsApp Image 2024-07-02 at 18 41 10_a9c53603](https://github.com/Nzamwitafab/calculator_with_login_signup_forms/assets/113667527/a384d810-b48f-421a-85a5-28ca41f97cce)
 
 
 Contributing
