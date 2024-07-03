@@ -51,7 +51,7 @@ const Calculator = () => {
       flexDirection: "row",
       flexWrap: "wrap",
       justifyContent: "space-around",
-      padding: 10,
+      // padding: 10,
     },
   });
 

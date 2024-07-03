@@ -1,17 +1,32 @@
 import React, { useState } from 'react';
-import { View, TextInput, Button, StyleSheet, Text } from 'react-native';
+import { View, TextInput, Button, StyleSheet, Text, Alert } from 'react-native';
 import { useTheme } from '@/components/ThemeContext';  // Adjust the import path as necessary
+import { FIREBASE_AUTH } from '../firebaseConfig';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { useAuth } from '../AuthContext'
 
 const LoginScreen: React.FC = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false); // Add loading state
   const { theme } = useTheme();  // Use the theme from your context
+  const { logIn } = useAuth();  // Correctly using logIn from useAuth
 
-  const handleLogin = () => {
-    // Implement your login logic here
-    console.log('Login attempt with:', { email, password });
-  };
-
+  const auth = FIREBASE_AUTH;
+  const signIn = async () => {
+    setLoading(true);
+    try {
+      const response = await signInWithEmailAndPassword(auth, email, password);
+      console.log(response);
+      logIn();  // Trigger login state change
+      Alert.alert('Success', 'Login successful!');
+    } catch (error: any) {
+      console.error(error);
+      Alert.alert('Login Failed', error.message);
+    } finally {
+      setLoading(false);
+    }
+  }
   const dynamicStyles = StyleSheet.create({
     input: {
       height: 50,
@@ -55,10 +70,18 @@ const LoginScreen: React.FC = () => {
       />
       <Button
         title="Login"
-        onPress={handleLogin}
+        onPress={signIn}
         color={theme === 'light' ? '#6200ee' : '#bb86fc'}  // Adjust button color based on theme
       />
     </View>
   );
 };
 export default LoginScreen;
+function setLoading(arg0: boolean) {
+  throw new Error('Function not implemented.');
+}
+
+function logIn() {
+  throw new Error('Function not implemented.');
+}
+

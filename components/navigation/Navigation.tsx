@@ -8,6 +8,7 @@ import Calculator from '../screens/Calculator';
 import LoginScreen from '../screens/LoginScreen';
 import SignupScreen from '../screens/SignupScreen';
 import { TabParamList, NavigationProps } from '../types';
+import { useAuth } from '../AuthContext';
 
 const Tab = createBottomTabNavigator<TabParamList>();
 
@@ -25,13 +26,13 @@ const CustomHeader: React.FC = () => {
 };
 
 export default function BottomNavigation() {
+  const { isLoggedIn } = useAuth();
 
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
-          let iconName: string;
-
+          let iconName;
           if (route.name === 'SignupScreen') {
             iconName = focused ? 'person-add' : 'person-add-outline';
           } else if (route.name === 'LoginScreen') {
@@ -39,9 +40,8 @@ export default function BottomNavigation() {
           } else if (route.name === 'Calculator') {
             iconName = focused ? 'calculator' : 'calculator-outline';
           } else {
-            iconName = 'alert';
+            iconName = 'alert'; // Default icon
           }
-
           return <Icon name={iconName} size={size} color={color} />;
         },
         tabBarActiveTintColor: 'tomato',
@@ -51,23 +51,28 @@ export default function BottomNavigation() {
         headerLeft: () => <CustomHeader />,
       })}
     >
-      <Tab.Screen
-        name="SignupScreen"
-        component={SignupScreen}
-        options={{ tabBarLabel: 'Sign Up' }}
-      />
-      <Tab.Screen
-        name="LoginScreen"
-        component={LoginScreen}
-        options={{ tabBarLabel: 'Sign In' }}
-      >
-      </Tab.Screen>
-      <Tab.Screen
-        name="Calculator"
-        component={Calculator}
-        options={{ tabBarLabel: 'Calculator' }}
-      >
-      </Tab.Screen>
+      {isLoggedIn ? (
+        // Show only Calculator if logged in
+        <Tab.Screen
+          name="Calculator"
+          component={Calculator}
+          options={{ tabBarLabel: 'Calculator' }}
+        />
+      ) : (
+        // Show Login and Signup if not logged in
+        <>
+          <Tab.Screen
+            name="SignupScreen"
+            component={SignupScreen}
+            options={{ tabBarLabel: 'Sign Up' }}
+          />
+          <Tab.Screen
+            name="LoginScreen"
+            component={LoginScreen}
+            options={{ tabBarLabel: 'Sign In' }}
+          />
+        </>
+      )}
     </Tab.Navigator>
-);
+  );
 }

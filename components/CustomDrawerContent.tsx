@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, Switch } from 'react-native';
+import { View, Text, StyleSheet, Switch, Alert } from 'react-native';
 import {
   DrawerContentScrollView,
   DrawerItem,
@@ -7,37 +7,59 @@ import {
 } from '@react-navigation/drawer';
 import Icon from 'react-native-vector-icons/Ionicons';
 import { useTheme } from './ThemeContext';
+import { useAuth } from './AuthContext';
 
 const CustomDrawerContent: React.FC<DrawerContentComponentProps> = (props) => {
 
   const { theme, toggleTheme } = useTheme();
+  const { isLoggedIn, logOut } = useAuth();  // Correctly using logOut inside the component
+
+  const handleLogout = () => {
+    Alert.alert(
+      "Logout Confirmation",
+      "Are you sure you want to log out?",
+      [
+        { text: "Cancel", style: "cancel" },
+        { text: "Logout", onPress: () => logOut() }
+      ],
+      { cancelable: false }
+    );
+  };
 
   return (
     <DrawerContentScrollView style={styles[theme].container} {...props}>
-      <DrawerItem
-        label="Sign Up"
-        icon={({ color, size }) => (
-          <Icon name="person-add-outline" color={styles[theme].iconColor.color} size={size} />
-        )}
-        onPress={() => props.navigation.navigate('SignupScreen')}
-         labelStyle={styles[theme].drawerItemLabel}
-      />
-      <DrawerItem
-        label="Sign In"
-        icon={({ color, size }) => (
-          <Icon name="log-in-outline" color={styles[theme].iconColor.color} size={size} />
-        )}
-        onPress={() => props.navigation.navigate('LoginScreen')}
-         labelStyle={styles[theme].drawerItemLabel}
-      />
-      <DrawerItem
-        label="Calculator"
-        icon={({ color, size }) => (
-          <Icon name="calculator-outline" color={styles[theme].iconColor.color} size={size} />
-        )}
-        onPress={() => props.navigation.navigate('Calculator')}
-         labelStyle={styles[theme].drawerItemLabel}
-      />
+      {!isLoggedIn && (
+        <>
+          <DrawerItem
+            label="Sign Up"
+            icon={({ color, size }) => <Icon name="person-add-outline" color={styles[theme].iconColor.color} size={size} />}
+            onPress={() => props.navigation.navigate('SignupScreen')}
+            labelStyle={styles[theme].drawerItemLabel}
+          />
+          <DrawerItem
+            label="Sign In"
+            icon={({ color, size }) => <Icon name="log-in-outline" color={styles[theme].iconColor.color} size={size} />}
+            onPress={() => props.navigation.navigate('LoginScreen')}
+            labelStyle={styles[theme].drawerItemLabel}
+          />
+        </>
+      )}
+      {isLoggedIn && (
+        <>
+          <DrawerItem
+            label="Calculator"
+            icon={({ color, size }) => <Icon name="calculator-outline" color={styles[theme].iconColor.color} size={size} />}
+            onPress={() => props.navigation.navigate('Calculator')}
+            labelStyle={styles[theme].drawerItemLabel}
+          />
+          <DrawerItem
+            label="Logout"
+            icon={({ color, size }) => <Icon name="log-out-outline" color={styles[theme].iconColor.color} size={size} />}
+            onPress={handleLogout}
+            labelStyle={styles[theme].drawerItemLabel}
+          />
+        </>
+      )}
       <View style={styles[theme].themeToggler}>
         <Text style={styles[theme].themeText}>{theme === 'light' ? 'Light Mode' : 'Dark Mode'}</Text>
         <Switch
